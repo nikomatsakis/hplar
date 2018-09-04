@@ -8,5 +8,8 @@
 
 import Foundation
 
-print("Hello, World!")
+let f: Formula<String> = Formula.False.and(Formula.True)
+let g = f.map_atoms({ Formula.Atom($0) })
+print(f)
+print(g)
 
