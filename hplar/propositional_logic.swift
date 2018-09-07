@@ -8,7 +8,7 @@
 
 import Foundation
 
-indirect enum Formula<A: Equatable> {
+indirect enum Formula<A: Equatable>: CustomStringConvertible {
     case False
     case True
     case Atom(A)
@@ -47,6 +47,15 @@ indirect enum Formula<A: Equatable> {
     
     func not() -> Formula<A> {
         return Formula.Not(self)
+    }
+    
+    func negate() -> Formula<A> {
+        switch self {
+        case .Not(let f):
+            return f
+        default:
+            return Formula.Not(self)
+        }
     }
     
     func with(_ op: Operator, _ rhs: Formula<A>) -> Formula<A> {
@@ -160,9 +169,64 @@ indirect enum Formula<A: Equatable> {
         default: return false
         }
     }
+    
+    private func nnf1() -> Formula<A> {
+        switch self {
+        case .Binary(.And, let p, let q):
+            return p.nnf1().and(q.nnf1())
+        case .Binary(.Or, let p, let q):
+            return p.nnf1().or(q.nnf1())
+        case .Binary(.Implies, let p, let q):
+            return p.not().nnf1().or(q.nnf1())
+        case .Binary(.Iff, let p, let q):
+            return p.nnf1().and(q.nnf1()).or(p.not().nnf1().and(q.not().nnf1()))
+        case .Not(.Not(let p)):
+            return p.nnf1()
+        case .Not(.Binary(.And, let p, let q)):
+            return p.not().nnf1().or(q.not().nnf1())
+        case .Not(.Binary(.Or, let p, let q)):
+            return p.not().nnf1().and(q.not().nnf1())
+        case .Not(.Binary(.Implies, let p, let q)):
+            return p.nnf1().and(q.not().nnf1())
+        case .Not(.Binary(.Iff, let p, let q)):
+            return p.nnf1().and(q.not().nnf1()).or(p.not().nnf1().and(q.nnf1()))
+        default:
+            return self
+        }
+    }
+    
+    func nnf() -> Formula<A> {
+        return self.psimplify().nnf1()
+    }
+    
+    func to_string(_ precedence: Int) -> String {
+        switch self {
+        case .False:
+            return "false"
+        case .True:
+            return "true"
+        case .Atom(let a):
+            return "\(a)"
+        case .Not(let formula):
+            return "~\(formula.to_string(precedence))"
+        case .Binary(let op, let left, let right):
+            let op_precedence = op.precedence();
+            let s = "\(left.to_string(op_precedence)) \(op) \(right.to_string(op_precedence))";
+            if op_precedence < precedence {
+                return "(\(s))"
+            }
+            return s
+        case .Quantified(let q, let n, let formula):
+            return "\(q)<\(n)> \(formula.to_string(100))"
+        }
+    }
+    
+    var description: String {
+        return self.to_string(0)
+    }
 }
 
-enum Operator {
+enum Operator: CustomStringConvertible {
     case And
     case Or
     case Implies
@@ -175,11 +239,36 @@ enum Operator {
     func eval(_ lhs: () -> Bool, _ rhs: () -> Bool) -> Bool {
         return false
     }
+    
+    var description: String {
+        switch self {
+        case .And: return "&&"
+        case .Or: return "||"
+        case .Implies: return "==>"
+        case .Iff: return "<=>"
+        }
+    }
+    
+    func precedence() -> Int {
+        switch self {
+        case .And: return 1
+        case .Or: return 0
+        case .Implies: return 1
+        case .Iff: return 1
+        }
+    }
 }
 
-enum Quantifier {
+enum Quantifier: CustomStringConvertible {
     case ForAll
     case Exists
+    
+    var description: String {
+        switch self {
+        case .ForAll: return "forall"
+        case .Exists: return "exists"
+        }
+    }
 }
 
 struct Name {

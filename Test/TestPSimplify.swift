@@ -1,6 +1,6 @@
 //
 //  Test.swift
-//  Test
+//  TestPSimplify
 //
 //  Created by Nicholas Matsakis on 9/4/18.
 //  Copyright © 2018 Nicholas Matsakis. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class Test: XCTestCase {
+class TestPSimplify: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -34,6 +34,6 @@ class Test: XCTestCase {
         let h = String(describing: g);
         
         // ~0 ==> ~1 -- clearly we need to write a better pretty printer :)
-        XCTAssertEqual(h, "Binary(Test.Operator.Implies, Test.Formula<Swift.Int>.Not(Test.Formula<Swift.Int>.Atom(0)), Test.Formula<Swift.Int>.Not(Test.Formula<Swift.Int>.Atom(1)))")
+        XCTAssertEqual(h, "~0 ==> ~1")
     }
 }

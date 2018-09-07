@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F41EE0B421427A14009EC71B /* TestNNF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41EE0B321427A14009EC71B /* TestNNF.swift */; };
 		F4F3A3BF213BF81700FBE8E6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F3A3BE213BF81700FBE8E6 /* main.swift */; };
 		F4F3A3C6213BF9C000FBE8E6 /* propositional_logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F3A3C5213BF9C000FBE8E6 /* propositional_logic.swift */; };
-		F4F3A3CE213E899800FBE8E6 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F3A3CD213E899800FBE8E6 /* Test.swift */; };
+		F4F3A3CE213E899800FBE8E6 /* TestPSimplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F3A3CD213E899800FBE8E6 /* TestPSimplify.swift */; };
 		F4F3A3D3213E8B7800FBE8E6 /* propositional_logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F3A3C5213BF9C000FBE8E6 /* propositional_logic.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,11 +27,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F41EE0B321427A14009EC71B /* TestNNF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNNF.swift; sourceTree = "<group>"; };
 		F4F3A3BB213BF81700FBE8E6 /* hplar */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hplar; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F3A3BE213BF81700FBE8E6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4F3A3C5213BF9C000FBE8E6 /* propositional_logic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = propositional_logic.swift; sourceTree = "<group>"; };
 		F4F3A3CB213E899700FBE8E6 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4F3A3CD213E899800FBE8E6 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		F4F3A3CD213E899800FBE8E6 /* TestPSimplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPSimplify.swift; sourceTree = "<group>"; };
 		F4F3A3CF213E899800FBE8E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,8 +84,9 @@
 		F4F3A3CC213E899800FBE8E6 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				F4F3A3CD213E899800FBE8E6 /* Test.swift */,
+				F4F3A3CD213E899800FBE8E6 /* TestPSimplify.swift */,
 				F4F3A3CF213E899800FBE8E6 /* Info.plist */,
+				F41EE0B321427A14009EC71B /* TestNNF.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -188,7 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F3A3D3213E8B7800FBE8E6 /* propositional_logic.swift in Sources */,
-				F4F3A3CE213E899800FBE8E6 /* Test.swift in Sources */,
+				F4F3A3CE213E899800FBE8E6 /* TestPSimplify.swift in Sources */,
+				F41EE0B421427A14009EC71B /* TestNNF.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +348,7 @@
 				F4F3A3C4213BF81700FBE8E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4F3A3D0213E899800FBE8E6 /* Build configuration list for PBXNativeTarget "Test" */ = {
 			isa = XCConfigurationList;
@@ -352,6 +357,7 @@
 				F4F3A3D2213E899800FBE8E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
